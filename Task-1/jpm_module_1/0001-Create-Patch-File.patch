@@ -1,0 +1,212 @@
+From 4a9698677a34d44a27ca4f93be4988910788670a Mon Sep 17 00:00:00 2001
+From: nihal shah <ns8468@srmist.edu.com>
+Date: Fri, 15 Oct 2021 19:23:23 +0000
+Subject: [PATCH] Create Patch File
+
+---
+ jpm_module_1/0001-Create-Patch-File.patch     | 118 ++++++++++++++++++
+ .../__pycache__/client3.cpython-38.pyc        | Bin 1106 -> 1092 bytes
+ jpm_module_1/client3.py                       |   7 +-
+ jpm_module_1/client_test.py                   |  25 +++-
+ 4 files changed, 145 insertions(+), 5 deletions(-)
+ create mode 100644 jpm_module_1/0001-Create-Patch-File.patch
+
+diff --git a/jpm_module_1/0001-Create-Patch-File.patch b/jpm_module_1/0001-Create-Patch-File.patch
+new file mode 100644
+index 0000000..aefab5d
+--- /dev/null
++++ b/jpm_module_1/0001-Create-Patch-File.patch
+@@ -0,0 +1,118 @@
++From 0167f2d09605dc9eb1f8c52df54d7ce0bf78c1eb Mon Sep 17 00:00:00 2001
++From: anupama nair <anupamanair3098@gmail.com>
++Date: Fri, 8 Jan 2021 18:39:57 +0000
++Subject: [PATCH] Create Patch File
++
++---
++ .../__pycache__/client3.cpython-38.pyc        | Bin 0 -> 1106 bytes
++ jpm_module_1/client3.py                       |  23 ++++++++----------
++ jpm_module_1/client_test.py                   |   4 +++
++ main.py                                       |   6 ++---
++ 4 files changed, 17 insertions(+), 16 deletions(-)
++ create mode 100644 jpm_module_1/__pycache__/client3.cpython-38.pyc
++
++diff --git a/jpm_module_1/__pycache__/client3.cpython-38.pyc b/jpm_module_1/__pycache__/client3.cpython-38.pyc
++new file mode 100644
++index 0000000000000000000000000000000000000000..4f4c951a60c29371f1b56a1ba8b89a5473f68d79
++GIT binary patch
++literal 1106
++zcmYjQPj3@B6t`zQlS!MD($YU!B;-Xx5Q&mjT%dwoSXx#>g-wfkzygh?@k=}HWG3}E
++z2(sxZ`$1BP%YKnP>__l*Pu%yg;<V3BTjA0B>zC)Bf6v*k*JlW>TVMW*uT=^8#|Gao
++z%#mj(<=?0zku)QMI_n9~Szq|hGQp%L0_lrTG8z0qL`8<Of;NJxj7~iD7tFvcgkw6U
++zTjawhQ3HQc2YNg=xdy>x9@vDPlXH4bC)ceN3n>wcuz<De;s#XU#+bfmVo5BE6|oAd
++zun0>}2sC6BmS7oHV71GZ$(T}d`U$f$5W%9HZ4lJ81{r%7dpnZ8CC&O*ybpOZ{P9TZ
++z{${I{6`dqIDoVZiX#LT8>vRC>^UtY#`ukb>FD0ada<u~V7|IKj@)@cT^3ot@R9nw$
++z5b5K2^vrWHyNdmhH}Y4A3~rJ$Hlj8fu`WY2;c%0;RUro*;7OM8qRaIW@Ekyb<R6o4
++z043K2KZG1qqOpj}L?`_s%{4bcsf*5uspz5~AEeR*eU)}#8Ykt+R}UdJsR_DSk?3Y%
++zg402vLD{sa;t%3!eHCk`uCllLlc-rV-yXM)iXODoAjh*?uiCHIUjMeWzq7ru)_(VJ
++zZEw51(>m_=;vS;UAl_(ovJ`Ut@In8xsU3peLY!@f6PuOpvH205$FD|J9djLv<8oQw
++zila6{XGBKyCP9km@HYPyG{@_wg(b*=juW2b^1?sh4sp{Hm5a?w=fG`DRSmnE2$AjC
++zPECwThk&U$w-d*`B+cV^cz4&*B>A0^Cz{_wqBif8_c^lUtUCg|<}h-du+I3;e|cg2
++zt?if1AH>{1Wm$UgKmk6cQj2gJ8>Z792zFc+xd;`aFM1-_-QV7OXXqQp$Q6)0=|LPD
++zmg2NbfVGEUXlw$Uqbx<`vU3GH7k$W0*ez5q(S|8VqzT=aOA$JxrLuIop)32RR(2F_
++s(C)qD`a6p3+|`t)C)2t9w1laWql&2eeC9JRszwz%OHLVP=TVmF{|sdovj6}9
++
++literal 0
++HcmV?d00001
++
++diff --git a/jpm_module_1/client3.py b/jpm_module_1/client3.py
++index f1771c3..f6544cb 100644
++--- a/jpm_module_1/client3.py
+++++ b/jpm_module_1/client3.py
++@@ -35,25 +35,22 @@ def getDataPoint(quote):
++ 	stock = quote['stock']
++ 	bid_price = float(quote['top_bid']['price'])
++ 	ask_price = float(quote['top_ask']['price'])
++-	price = bid_price
+++	price = (bid_price+ask_price)/2
++ 	return stock, bid_price, ask_price, price
++ 
++ def getRatio(price_a, price_b):
++ 	""" Get ratio of price_a and price_b """
++ 	""" ------------- Update this function ------------- """
++ 	""" Also create some unit tests for this function in client_test.py """
++-	return 1
+++	return price_a/price_b
++ 
++ # Main
++ if __name__ == "__main__":
++-
++-	# Query the price once every N seconds.
++-	for _ in iter(range(N)):
++-		quotes = json.loads(urllib.request.urlopen(QUERY.format(random.random())).read())
++-
++-		""" ----------- Update to get the ratio --------------- """
++-		for quote in quotes:
++-			stock, bid_price, ask_price, price = getDataPoint(quote)
++-			print ("Quoted %s at (bid:%s, ask:%s, price:%s)" % (stock, bid_price, ask_price, price))
++-
++-		print ("Ratio %s" % getRatio(price, price))
+++  for _ in iter(range(N)):
+++    quotes = json.loads(urllib.request.urlopen(QUERY.format(random.random())).read())
+++    prices = {}
+++    for quote in quotes:
+++      stock, bid_price, ask_price, price = getDataPoint(quote)
+++      prices[stock] = price
+++      print ("Quoted %s at (bid:%s, ask:%s, price:%s)" % (stock, bid_price, ask_price, price))
+++    print ("Ratio %s" %(getRatio(prices['ABC'], prices['DEF'])))
++diff --git a/jpm_module_1/client_test.py b/jpm_module_1/client_test.py
++index af2bf26..e16a52c 100644
++--- a/jpm_module_1/client_test.py
+++++ b/jpm_module_1/client_test.py
++@@ -8,6 +8,8 @@ class ClientTest(unittest.TestCase):
++       {'top_ask': {'price': 121.68, 'size': 4}, 'timestamp': '2019-02-11 22:06:30.572453', 'top_bid': {'price': 117.87, 'size': 81}, 'id': '0.109974697771', 'stock': 'DEF'}
++     ]
++     """ ------------ Add the assertion below ------------ """
+++    for quote in quotes:
+++      self.assertEqual(getDataPoint(quote), (quote['stock'], quote['top_bid']['price'], quote['top_ask']['price'], (quote['top_bid']['price']+quote['top_ask']['price'])/2))
++ 
++   def test_getDataPoint_calculatePriceBidGreaterThanAsk(self):
++     quotes = [
++@@ -15,6 +17,8 @@ class ClientTest(unittest.TestCase):
++       {'top_ask': {'price': 121.68, 'size': 4}, 'timestamp': '2019-02-11 22:06:30.572453', 'top_bid': {'price': 117.87, 'size': 81}, 'id': '0.109974697771', 'stock': 'DEF'}
++     ]
++     """ ------------ Add the assertion below ------------ """
+++    for quote in quotes:
+++      self.assertEqual(getDataPoint(quote), (quote['stock'], quote['top_bid']['price'], quote['top_ask']['price'], (quote['top_bid']['price']+quote['top_ask']['price'])/2))
++ 
++ 
++   """ ------------ Add more unit tests ------------ """
++diff --git a/main.py b/main.py
++index 20ac3f2..157abb9 100644
++--- a/main.py
+++++ b/main.py
++@@ -29,6 +29,6 @@ os.killpg(os.getpgid(process.pid), signal.SIGTERM)
++ # Comments are anything that's preceded with '#'
++ # TO UNCOMMENT JUST REMOVE THE '#'
++ 
++-#print("UNIT TEST RESULTS BELOW...")
++-#process2 = subprocess.Popen(['python', #'client_test.py'], cwd=os.getcwd(), #preexec_fn=os.setsid)
++-#process2.wait()
++\ No newline at end of file
+++print("UNIT TEST RESULTS BELOW...")
+++process2 = subprocess.Popen(['python', 'client_test.py'], cwd=os.getcwd(), preexec_fn=os.setsid)
+++process2.wait()
++\ No newline at end of file
++-- 
++2.17.1
++
+diff --git a/jpm_module_1/__pycache__/client3.cpython-38.pyc b/jpm_module_1/__pycache__/client3.cpython-38.pyc
+index 4f4c951a60c29371f1b56a1ba8b89a5473f68d79..ba3a5a6089e308c3a3adac3fcd290dcd1f6329d8 100644
+GIT binary patch
+delta 118
+zcmcb_afE{}l$V!_0SLZr_z~a0v5~Kz$xsBytzk@I%w{U$Nnr?Pr~&e%fwU%*UlAiv
+zu812*XfoYmFDS}PPK{5zHTeOP8V?&#kb#kdk%h5HU@{+b2cy8`>CCGH**F*l7!`n`
+KAew_wj1d4fDi=5a
+
+delta 131
+zcmX@YafyR3l$V!_0SM%l{D|l0+{o9@<jeu&)-cpCN;3pAXfjqQDY&PWC=?}@Waca6
+zrzsQ^WhSS_Cn_Z7r9jz93Ps#NEt*VG>`=+5$>*5VIG8}@vJ~-6V(wt%o7~B~N|2p{
+RQGii_k%bXNb1;fA0sv-N9mxOy
+
+diff --git a/jpm_module_1/client3.py b/jpm_module_1/client3.py
+index f6544cb..2f9588c 100644
+--- a/jpm_module_1/client3.py
++++ b/jpm_module_1/client3.py
+@@ -39,10 +39,9 @@ def getDataPoint(quote):
+ 	return stock, bid_price, ask_price, price
+ 
+ def getRatio(price_a, price_b):
+-	""" Get ratio of price_a and price_b """
+-	""" ------------- Update this function ------------- """
+-	""" Also create some unit tests for this function in client_test.py """
+-	return price_a/price_b
++  if(price_b==0):
++    return
++  return price_a/price_b
+ 
+ # Main
+ if __name__ == "__main__":
+diff --git a/jpm_module_1/client_test.py b/jpm_module_1/client_test.py
+index e16a52c..8302034 100644
+--- a/jpm_module_1/client_test.py
++++ b/jpm_module_1/client_test.py
+@@ -1,5 +1,5 @@
+ import unittest
+-from client3 import getDataPoint
++from client3 import *
+ 
+ class ClientTest(unittest.TestCase):
+   def test_getDataPoint_calculatePrice(self):
+@@ -22,7 +22,30 @@ class ClientTest(unittest.TestCase):
+ 
+ 
+   """ ------------ Add more unit tests ------------ """
++  def test_getRatio_priceBZero(self):
++    price_a = 169
++    price_b = 0
++    self.assertIsNone(getRatio(price_a, price_b))
++ 
++  def test_getRatio_priceAZero(self):
++    price_a = 0
++    price_b = 145.98
++    self.assertEqual(getRatio(price_a, price_b), 0)
++ 
++  def test_getRatio_greaterThan1(self):
++    price_a = 378.12
++    price_b = 156.63
++    self.assertGreater(getRatio(price_a, price_b), 1)
+ 
++  def test_getRatio_LessThan1(self):
++    price_a = 156.63
++    price_b = 378.12
++    self.assertLess(getRatio(price_a, price_b), 1)
++
++  def test_getRatio_exactlyOne(self):
++    price_a = 564.66
++    price_b = 564.66
++    self.assertEqual(getRatio(price_a, price_b), 1)
+ 
+ 
+ if __name__ == '__main__':
+-- 
+2.17.1
